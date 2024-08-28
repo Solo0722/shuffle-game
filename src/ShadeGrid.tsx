@@ -38,8 +38,8 @@ const ShadeGrid: React.FC = () => {
     let score = 0;
     for (let i = 0; i < arrangedShades.length; i++){
       if (shades[i].id === arrangedShades[i].id && shades[i].url === arrangedShades[i].url) {
-        score += 5;
-        if (score === 80) {
+        score += 6.25;
+        if (score === 100) {
           setIsVisible(true);
         }
       }
