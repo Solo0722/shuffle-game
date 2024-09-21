@@ -230,11 +230,18 @@ const Game = () => {
 
 const Header = ({ level, counter }:{level:string,counter:number}) => {
   return (
-    <div className="header">
-      <div className="header-item">Level: {level}</div>
-      {/* <div className="header-item">Score: {score}</div> */}
-      <div className="header-item">Steps: {counter}</div>
-    </div>
+    <>
+      <div className="header mb-0">
+        <div className="header-item">Level: {level}</div>
+        {/* <div className="header-item">Score: {score}</div> */}
+        <div className="header-item">Steps: {counter}</div>
+      </div>
+      <div className="header">
+        <small className="header-item text-xs">
+          Arrange the shades from lightest to darkest
+        </small>
+      </div>
+    </>
   );
 };
 

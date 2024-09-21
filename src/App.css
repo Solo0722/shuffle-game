@@ -248,4 +248,7 @@ align-items:center;
   .action-button{
     padding:1rem;
   }
+  .score-popup{
+    padding:1rem;
+  }
 }

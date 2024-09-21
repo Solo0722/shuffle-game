@@ -28,10 +28,19 @@ const Landing = () => {
       <h1 className="game-title pacifico-regular" ref={titleRef}>
         Shade Shuffle
       </h1>
-      <p className='mt-4'>By Akesi Kreations</p>
-      <button className="play-button" type="button" ref={buttonRef} onClick={() => setPhase(1)}>
+      <button
+        className="play-button"
+        type="button"
+        ref={buttonRef}
+        onClick={() => setPhase(1)}
+      >
         Play Now
       </button>
+
+      <div className="fixed bottom-1 left-1/2 -translate-x-1/2 text-center items-center">
+        <p className="mt-4">Made with ❤️ by Akesi Kreations</p>
+        {/* <img src="/android-chrome-512.png" alt="logo" width={80} height={80} /> */}
+      </div>
     </div>
   );
 }

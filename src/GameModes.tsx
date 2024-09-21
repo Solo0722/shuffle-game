@@ -26,9 +26,9 @@ const GameModes = () => {
       <BackButton/>
       <h2 className="levels-title">Select Level</h2>
       <div className="levels-buttons">
-        {["Easy", "Medium", "Hard"].map((level, index) => (
+        {["Easy", "Medium", "Hard","Expert"].map((level, index) => (
           <button
-            disabled={level !== "Easy"}
+            disabled={level !== "Easy" && level !== "Hard"}
             key={index}
             className="level-button"
             onClick={() => handleLevelSelect(level)}
