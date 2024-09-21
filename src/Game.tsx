@@ -69,21 +69,6 @@ const genBoard = (
 };
 
 
-const checkWin = (
-  board: IMAGE[][],
-  correctBoard: React.MutableRefObject<IMAGE[][]>
-) => {
-  for (let i = 0; i < board.length; ++i) {
-    for (let j = 0; j < board[i].length; ++j) {
-      if (board[i][j].id !== correctBoard.current[i][j].id) {
-        return false;
-      }
-    }
-  }
-  return true;
-};
-
-
 
 const Game = () => {
   const [shuffled, setShuffled] = useState(false);
@@ -100,21 +85,38 @@ const Game = () => {
    React.useEffect(() => {
      setBoard(genBoard(level,correctBoard, W, H));
    }, [W, H, level]);
-   const [counter, setCounter] = React.useState(0);
-   React.useEffect(() => {
-     if (checkWin(board, correctBoard)) {
-       const pid = setTimeout(() => {
-         alert(
-           `E> Yay you did it! <3 It took you ${counter} steps. World averadge is ${
-             counter * 2
-           }.`
-         );
-         setBoard(genBoard(level,correctBoard,W,H));
-         setCounter(0);
-       }, 500);
-       return () => clearTimeout(pid);
-     }
-   }, [board]);
+  const [counter, setCounter] = React.useState(0);
+  
+  const checkWin = (
+    board: IMAGE[][],
+    correctBoard: React.MutableRefObject<IMAGE[][]>,
+  ) => {
+    setScore(0);
+    for (let i = 0; i < board.length; ++i) {
+      for (let j = 0; j < board[i].length; ++j) {
+        if (board[i][j].id === correctBoard.current[i][j].id) {
+          setScore((sc) => (sc += 6.25));
+        }
+      }
+    }
+   setShowScorePopup(true);
+   if (score >= 100) {
+     setConfetti(true);
+     setTimeout(() => setConfetti(false), 7000);
+   }
+  };
+
+    const generateMessage = (score: number) => {
+      if (score < 30) {
+        return "Ooops, you didn't do well. Try again!";
+      } else if (score < 50) {
+        return "Better! Now let's aim for a higher score";
+      } else if (score < 70) {
+        return "Ohhhhh, So close! You can do it";
+      } else {
+        return "Yayyyyy! You did it. Well done";
+      }
+    };
 
    const swap = (a: POS, b: POS) => {
      setCounter((c) => c + 1);
@@ -182,11 +184,7 @@ const Game = () => {
   };
 
   const finishGame = () => {
-    setShowScorePopup(true);
-    if (score >= -10) {
-      setConfetti(true);
-      setTimeout(() => setConfetti(false), 7000);
-    }
+    checkWin(board, correctBoard);
   };
 
 
@@ -215,7 +213,16 @@ const Game = () => {
           Finish Game
         </button>
       </div>
-      {showScorePopup && <div className="score-popup">Your Score: {score}</div>}
+      <div className="overlay"
+        onClick={() => setShowScorePopup(false)}
+        style={{ display: showScorePopup ? "flex" : "none" }}
+      />
+      {showScorePopup && (
+        <div className="score-popup">
+          <h3 className="font-bold text-xl">Your Score: {score}</h3>
+          <p>{generateMessage(score)}</p>
+        </div>
+      )}
       {confetti && <ReactConfetti />}
     </div>
   );
