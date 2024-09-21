@@ -17,6 +17,7 @@ const GameModes = () => {
 
   const handleLevelSelect = (level:string) => {
     setLevel(level);
+    //@ts-expect-error type is not proper
     setPhase((phase:number) => phase += 1);
   }
 
@@ -27,6 +28,7 @@ const GameModes = () => {
       <div className="levels-buttons">
         {["Easy", "Medium", "Hard"].map((level, index) => (
           <button
+            disabled={level !== "Easy"}
             key={index}
             className="level-button"
             onClick={() => handleLevelSelect(level)}

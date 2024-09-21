@@ -82,6 +82,15 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.level-button:disabled {
+  background-color: #f2c6c7; /* Lighter version of the original background color */
+  color: #d3d3d3; /* Light gray for disabled text */
+  cursor: not-allowed; /* Indicate the button is not clickable */
+  opacity: 0.6; /* Make the button look less prominent */
+  transform: none; /* Remove any transform effects */
+  transition: none; /* Disable the hover/active transitions */
+}
+
 .level-button:hover {
   background-color: #fad0c4;
   transform: scale(1.05);
