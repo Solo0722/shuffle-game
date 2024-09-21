@@ -28,6 +28,7 @@ const Landing = () => {
       <h1 className="game-title pacifico-regular" ref={titleRef}>
         Shade Shuffle
       </h1>
+      <p className='mt-4'>By Akesi Kreations</p>
       <button className="play-button" type="button" ref={buttonRef} onClick={() => setPhase(1)}>
         Play Now
       </button>

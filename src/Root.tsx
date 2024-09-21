@@ -6,7 +6,7 @@ import { GlobalContext } from './context/GlobalContextProvider';
 
 const Root = () => {
     
-    const {phase,setPhase} = useContext(GlobalContext)
+    const {phase} = useContext(GlobalContext)
 
      const getScreen = () => {
        switch (phase) {

@@ -42,20 +42,25 @@ const correctImages = (flattenedBoard: IMAGE[]) => {
   return true;
 };
 
-const genBoard = (level:string,correctBoard: React.MutableRefObject<undefined> | undefined | IMAGE[][], W: number | undefined, H: number | undefined, iter = 1) => {
-  const board:IMAGE[][] = [];
+const genBoard = (
+  level: string,
+  correctBoard: React.MutableRefObject<IMAGE[][]>,
+  W: number | undefined,
+  H: number | undefined,
+  iter = 1
+) => {
+  const board: IMAGE[][] = [];
 
   for (let i = 0; i < W; ++i) {
     board.push([]);
     for (let j = 0; j < H; ++j) {
-   
       const index = i * H + j;
       board[i].push(IMAGES[level][index]);
     }
   }
 
   if (!correctImages([].concat(...board)) && iter < 100) {
-    return genBoard(level,correctBoard, W, H, iter + 1);
+    return genBoard(level, correctBoard, W, H, iter + 1);
   } else {
     correctBoard.current = board;
   }
@@ -64,13 +69,13 @@ const genBoard = (level:string,correctBoard: React.MutableRefObject<undefined> |
 };
 
 
-const checkWin = (board: IMAGE[][], correctBoard: React.MutableRefObject<undefined>) => {
+const checkWin = (
+  board: IMAGE[][],
+  correctBoard: React.MutableRefObject<IMAGE[][]>
+) => {
   for (let i = 0; i < board.length; ++i) {
     for (let j = 0; j < board[i].length; ++j) {
-      if (
-        board[i][j].id !==
-        correctBoard.current[i][j].id
-      ) {
+      if (board[i][j].id !== correctBoard.current[i][j].id) {
         return false;
       }
     }
@@ -82,7 +87,6 @@ const checkWin = (board: IMAGE[][], correctBoard: React.MutableRefObject<undefin
 
 const Game = () => {
   const [shuffled, setShuffled] = useState(false);
-  //@ts-expect-error the types in GlobalContext must be defined 
   const {level} = useContext(GlobalContext);
    const [score, setScore] = useState(0);
   const gameBoardRef = useRef(null);
@@ -90,7 +94,7 @@ const Game = () => {
   const popUpRef = useRef(null);
   const [showScorePopup, setShowScorePopup] = useState(false);
   const [confetti, setConfetti] = useState(false);
-   const correctBoard = React.useRef();
+   const correctBoard = React.useRef<IMAGE[][]>();
    const [{ W, H }] = React.useState({ W: 4, H: 4 });
    const [board, setBoard] = React.useState(() => genBoard(level,correctBoard, W, H));
    React.useEffect(() => {

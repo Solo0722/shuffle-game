@@ -1,6 +1,11 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-export const GlobalContext = createContext({});
+export const GlobalContext = createContext({
+  phase: 0,
+  setPhase: () => {},
+  level: "Easy",
+  setLevel: () => {},
+});
 const GlobalContextProvider = ({children}:{children:React.ReactElement}) => {
     
     const [phase, setPhase] = useState(0);
@@ -15,7 +20,8 @@ const GlobalContextProvider = ({children}:{children:React.ReactElement}) => {
         }
      }, [phase, setPhase,level,setLevel]);
 
-  return (
+    return (
+      //@ts-expect-error value type not properly defined 
       <GlobalContext.Provider value={values}>{ children}</GlobalContext.Provider>
   )
 }
