@@ -1,11 +1,14 @@
 import './App.css'
-import ShadeGrid from './ShadeGrid.tsx';
+import GlobalContextProvider from './context/GlobalContextProvider.tsx';
+import Root from './Root.tsx';
 
 function App() {
 
   return (
-     <ShadeGrid/>
-  )
+    <GlobalContextProvider>
+    <Root/>
+    </GlobalContextProvider>
+  );
 }
 
 export default App

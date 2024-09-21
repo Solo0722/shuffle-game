@@ -1,0 +1,225 @@
+.app {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+/* Gradient background animation */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.intro-container {
+  text-align: center;
+}
+
+.game-title {
+  font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: white;
+  animation: titleAnimation 5s ease-in-out infinite;
+  animation-direction: alternate;
+  border-radius: 20px;
+  padding:10px 20px;
+}
+
+/* Title color transition animation */
+@keyframes titleAnimation {
+  0% { background: linear-gradient(to right, #ff9a9e, #fad0c4); }
+  100% { background: linear-gradient(to right, #fad0c4, #ff9a9e); }
+}
+
+.play-button {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #ff9a9e;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.play-button:hover {
+  background-color: #fad0c4;
+}
+
+/* Levels screen styles */
+.levels-container {
+  text-align: center;
+}
+
+.levels-title {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+}
+
+.levels-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.level-button {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  color: white;
+  background-color: #ff9a9e;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.level-button:hover {
+  background-color: #fad0c4;
+  transform: scale(1.05);
+}
+
+/* Back Button */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #ff9a9e;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #fad0c4;
+}
+
+/* Game screen */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  /* max-width: 500px; */
+  position: relative;
+}
+
+.card {
+  background-color: #fff;
+  height: 100px;
+  width:100px;
+  position:relative;
+  padding-bottom: 100%; /* Keep cards square */
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+  cursor:pointer;
+}
+
+
+
+/* Pop-up message */
+.pop-up {
+  position: absolute;
+  top: 30%; /* Center vertically */
+  left: 30%; /* Center horizontally */
+  transform: scale(0),translate(-50%, -50%);
+  z-index:55;
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 10px;
+  opacity: 0;
+  /* transform: scale(0); */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  width: 100%; /* Ensure it fits well in the game area */
+  /* max-width: 500px; */
+  margin: 20px 0; /* Add some margin for spacing */
+  position: relative; /* Position relative for z-index */
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.header-item {
+  font-size: 1.2rem;
+  color: #333; /* Dark text for visibility */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap:10px;
+}
+
+.action-button {
+  padding: 1rem 2rem;
+  background-color: #ff9a9e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Score popup */
+.score-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 10px;
+  z-index: 15; /* Ensure it appears above other elements */
+}
+
+
+/* Responsive: Adjust card size on mobile */
+@media (max-width: 600px) {
+  .game-board {
+    width: 100%;
+    gap: 5px;
+  }
+
+  .card{
+    width:80px;
+    height:80px;
+  }
+
+  .button-container{
+    gap:5px;
+  }
+
+  .action-button{
+    padding:1rem;
+  }
+}
