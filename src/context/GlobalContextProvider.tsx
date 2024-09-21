@@ -2,9 +2,9 @@ import React, { createContext, useMemo, useState } from 'react'
 
 export const GlobalContext = createContext({
   phase: 0,
-  setPhase: () => {},
+  setPhase: (phase: number) => phase,
   level: "Easy",
-  setLevel: () => {},
+  setLevel: (level:string) => level,
 });
 const GlobalContextProvider = ({children}:{children:React.ReactElement}) => {
     
